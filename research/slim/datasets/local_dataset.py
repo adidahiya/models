@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-"""Provides data for the discriminating_oracle dataset.
+"""Provides data for the local image dataset.
 
 The dataset scripts used to create the dataset were modified from
 download_and_convert_flowers.py, they can be fuond on adi's computer
@@ -43,7 +43,7 @@ _ITEMS_TO_DESCRIPTIONS = {
 
 
 def get_split(split_name, dataset_dir, file_pattern=None, reader=None):
-    """Gets a dataset tuple with instructions for reading discriminating_oracle.
+    """Gets a dataset tuple with instructions for reading the local image dataset.
 
     Args:
       split_name: A train/validation split name.
