@@ -27,7 +27,7 @@ done
 
 source "$PWD/constants.sh"
 
-python3 eval_image_classifier.py \
+python eval_image_classifier.py \
   --checkpoint_path="${TRAIN_DIR}" \
   --eval_dir="${TRAIN_DIR}" \
   --dataset_name=flowers \

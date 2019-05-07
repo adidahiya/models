@@ -40,7 +40,7 @@ echo "Copying label file to ${OUTPUT_DIR} ..."
 cp "${DATASET_DIR}/labels.txt" "${OUTPUT_DIR}"
 
 echo "GETTING frozen graph template ..."
-python3 export_inference_graph.py  \
+python export_inference_graph.py  \
   --alsologtostderr   \
   --model_name="${network_type}"  \
   --image_size="${image_size}"  \

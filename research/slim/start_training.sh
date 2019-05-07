@@ -54,7 +54,7 @@ mkdir "${TRAIN_DIR}"
 
 if [[ "${train_whole_model}" == "true" ]]; then
   echo "TRAINING all layers ..."
-  python3 train_image_classifier.py \
+  python train_image_classifier.py \
     --train_dir="${TRAIN_DIR}" \
     --dataset_name=local_dataset \
     --dataset_split_name=train \
@@ -80,7 +80,7 @@ else
   # to specify the trainable scopes trainable_scopes, to demonstrate this, we
   # will limit the trainable scope to Fully-connected layers. You can definitely
   # add other layers by tweaking this flag.
-  python3 train_image_classifier.py \
+  python train_image_classifier.py \
     --train_dir="${TRAIN_DIR}" \
     --dataset_name=local_dataset \
     --dataset_split_name=train \

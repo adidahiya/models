@@ -8,10 +8,10 @@ set -x
 source "$PWD/constants.sh"
 
 echo "PREPARING dataset ..."
-mkdir "${DATASET_DIR}"
+mkdir -p "${DATASET_DIR}"
 cd "${SLIM_DIR}/datasets"
-python3 convert_local_dataset.py \
-  --images="${SLIM_DIR}/datasets/local_datasets" \
+python convert_local_dataset.py \
+  --images="${SLIM_DIR}/local_dataset" \
   --dataset_dir="${DATASET_DIR}"
 
 echo "dataset available in ${LEARN_DIR}"
