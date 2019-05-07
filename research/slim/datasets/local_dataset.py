@@ -25,7 +25,7 @@ from __future__ import print_function
 import os
 import tensorflow as tf
 
-from datasets import dataset_utils
+from dataset_utils import has_labels, read_label_file
 
 slim = tf.contrib.slim
 
@@ -35,9 +35,9 @@ SPLITS_TO_SIZES = {'train': 62, 'validation': 13}
 NUM_SHARDS = 3
 
 CLASS_NAMES_TO_IDS = {
-    'oracle_adi': 0,
-    'oracle_brent': 1,
-    'oracle_unknown': 2,
+    'mirror_adi': 0,
+    'mirror_brent': 1,
+    'mirror_unknown': 2,
 }
 
 _NUM_CLASSES = len(CLASS_NAMES_TO_IDS)
@@ -100,8 +100,8 @@ def get_split(split_name, dataset_dir, file_pattern=None, reader=None):
         keys_to_features, items_to_handlers)
 
     labels_to_names = None
-    if dataset_utils.has_labels(dataset_dir):
-        labels_to_names = dataset_utils.read_label_file(dataset_dir)
+    if has_labels(dataset_dir):
+        labels_to_names = read_label_file(dataset_dir)
 
     return slim.dataset.Dataset(
         data_sources=file_pattern,

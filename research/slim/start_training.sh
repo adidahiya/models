@@ -5,6 +5,8 @@ set -e
 # Echo each command, easier for debugging.
 set -x
 
+source "$PWD/constants.sh"
+
 usage() {
   cat << END_OF_USAGE
   Starts training.
