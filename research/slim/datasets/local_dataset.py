@@ -30,21 +30,20 @@ slim = tf.contrib.slim
 LABELS_FILENAME = 'labels.txt'
 
 # lol small data
-SPLITS_TO_SIZES = {'train': 62, 'validation': 13}
+SPLITS_TO_SIZES = {'train': 90, 'validation': 30}
 
-NUM_SHARDS = 3
+NUM_SHARDS = 4
 
 CLASS_NAMES_TO_IDS = {
     'mirror_adi': 0,
     'mirror_brent': 1,
-    'mirror_unknown': 2,
 }
 
 _NUM_CLASSES = len(CLASS_NAMES_TO_IDS)
 
 _ITEMS_TO_DESCRIPTIONS = {
     'image': 'A color image of varying size.',
-    'label': 'A single integer between 0 and 2',
+    'label': 'A single integer between 0 and 1',
 }
 
 _FILE_PATTERN = 'local_dataset_%s_*.tfrecord'

@@ -33,6 +33,7 @@ def main():
 
     # Look at the folder structure, and create lists of all the images.
     image_lists = create_image_lists(images_dir)
+    print(image_lists)
     class_count = len(image_lists.keys())
     if class_count == 0:
         tf.logging.error(
