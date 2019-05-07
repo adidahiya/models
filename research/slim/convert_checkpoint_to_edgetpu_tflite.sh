@@ -45,7 +45,7 @@ python3 export_inference_graph.py  \
   --model_name="${network_type}"  \
   --image_size="${image_size}"  \
   --output_file="${OUTPUT_DIR}/graph_template.pb" \
-  --dataset_name=flowers \
+  --dataset_name=local_dataset \
   --quantize
 
 echo "CONVERTING from checkpoint to frozen graph ..."
