@@ -29,17 +29,31 @@ from datasets import dataset_utils
 
 slim = tf.contrib.slim
 
-_FILE_PATTERN = 'oracle_%s_*.tfrecord'
-
 # lol small data
 SPLITS_TO_SIZES = {'train': 62, 'validation': 13}
 
-_NUM_CLASSES = 5
+NUM_SHARDS = 3
+
+CLASS_NAMES_TO_IDS = {
+    'oracle_adi': 0,
+    'oracle_brent': 1,
+    'oracle_unknown': 2,
+}
+
+_NUM_CLASSES = len(CLASS_NAMES_TO_IDS)
 
 _ITEMS_TO_DESCRIPTIONS = {
     'image': 'A color image of varying size.',
     'label': 'A single integer between 0 and 2',
 }
+
+_FILE_PATTERN = 'local_dataset_%s_*.tfrecord'
+
+
+def get_dataset_filename(dataset_dir, split_name, shard_id):
+    output_filename = 'local_dataset_%s_%05d-of-%05d.tfrecord' % (
+        split_name, shard_id, NUM_SHARDS)
+    return os.path.join(dataset_dir, output_filename)
 
 
 def get_split(split_name, dataset_dir, file_pattern=None, reader=None):

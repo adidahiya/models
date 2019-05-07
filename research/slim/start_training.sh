@@ -54,7 +54,7 @@ if [[ "${train_whole_model}" == "true" ]]; then
   echo "TRAINING all layers ..."
   python3 train_image_classifier.py \
     --train_dir="${TRAIN_DIR}" \
-    --dataset_name=flowers \
+    --dataset_name=local_dataset \
     --dataset_split_name=train \
     --dataset_dir="${DATASET_DIR}" \
     --model_name="${network_type}" \
@@ -80,7 +80,7 @@ else
   # add other layers by tweaking this flag.
   python3 train_image_classifier.py \
     --train_dir="${TRAIN_DIR}" \
-    --dataset_name=flowers \
+    --dataset_name=local_dataset \
     --dataset_split_name=train \
     --dataset_dir="${DATASET_DIR}" \
     --model_name="${network_type}" \

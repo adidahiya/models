@@ -9,10 +9,10 @@ import sys
 
 import tensorflow as tf
 import dataset_utils
-from download_and_convert_flowers import ImageReader, _get_dataset_filename
+from download_and_convert_flowers import ImageReader
+from local_dataset import get_dataset_filename, NUM_SHARDS
 
 MAX_NUM_IMAGES_PER_CLASS = 2 ** 27 - 1  # ~134M
-_NUM_SHARDS = 1
 LABELS_FILENAME = 'labels.txt'
 
 
@@ -119,14 +119,14 @@ def convert_dataset(split_name, filenames, class_names_to_ids, dataset_dir):
     """
     assert split_name in ['train', 'validation']
 
-    num_per_shard = int(math.ceil(len(filenames) / float(_NUM_SHARDS)))
+    num_per_shard = int(math.ceil(len(filenames) / float(NUM_SHARDS)))
 
     with tf.Graph().as_default():
         image_reader = ImageReader()
 
         with tf.Session('') as sess:
 
-            for shard_id in range(_NUM_SHARDS):
+            for shard_id in range(NUM_SHARDS):
                 output_filename = _get_dataset_filename(
                     dataset_dir, split_name, shard_id)
 

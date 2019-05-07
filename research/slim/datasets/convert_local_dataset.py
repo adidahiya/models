@@ -15,8 +15,7 @@ import tensorflow as tf
 
 from convert_utils import create_image_lists, convert_dataset
 from dataset_utils import write_label_file
-
-# from datasets import dataset_utils
+from local_dataset import CLASS_NAMES_TO_IDS
 
 
 def main():
@@ -61,20 +60,13 @@ def main():
     print(str(len(train_split)) + ' images in training split')
     print(str(len(validation_split)) + ' images in validation split')
 
-    # EDIT ME
-    class_names_to_ids = {
-        'oracle_adi': 0,
-        'oracle_brent': 1,
-        'oracle_unknown': 2,
-    }
-
-    convert_dataset('train', train_split, class_names_to_ids, output_dir)
+    convert_dataset('train', train_split, CLASS_NAMES_TO_IDS, output_dir)
     convert_dataset('validation', validation_split,
-                    class_names_to_ids, output_dir)
+                    CLASS_NAMES_TO_IDS, output_dir)
 
     # Finally, write the labels file:
     labels_to_class_names = dict(
-        zip(range(len(class_names_to_ids)), class_names_to_ids))
+        zip(range(len(CLASS_NAMES_TO_IDS)), CLASS_NAMES_TO_IDS))
     write_label_file(labels_to_class_names, output_dir)
 
 
