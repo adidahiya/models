@@ -25,9 +25,9 @@ from __future__ import print_function
 import os
 import tensorflow as tf
 
-from dataset_utils import has_labels, read_label_file
-
 slim = tf.contrib.slim
+
+LABELS_FILENAME = 'labels.txt'
 
 # lol small data
 SPLITS_TO_SIZES = {'train': 62, 'validation': 13}
@@ -54,6 +54,33 @@ def get_dataset_filename(dataset_dir, split_name, shard_id):
     output_filename = 'local_dataset_%s_%05d-of-%05d.tfrecord' % (
         split_name, shard_id, NUM_SHARDS)
     return os.path.join(dataset_dir, output_filename)
+
+
+def has_labels(dataset_dir, filename=LABELS_FILENAME):
+    return tf.gfile.Exists(os.path.join(dataset_dir, filename))
+
+
+def read_label_file(dataset_dir, filename=LABELS_FILENAME):
+    """Reads the labels file and returns a mapping from ID to class name.
+
+    Args:
+      dataset_dir: The directory in which the labels file is found.
+      filename: The filename where the class names are written.
+
+    Returns:
+      A map from a label (integer) to class name.
+    """
+    labels_filename = os.path.join(dataset_dir, filename)
+    with tf.gfile.Open(labels_filename, 'rb') as f:
+        lines = f.read().decode()
+    lines = lines.split('\n')
+    lines = filter(None, lines)
+
+    labels_to_class_names = {}
+    for line in lines:
+        index = line.index(':')
+        labels_to_class_names[int(line[:index])] = line[index+1:]
+    return labels_to_class_names
 
 
 def get_split(split_name, dataset_dir, file_pattern=None, reader=None):
