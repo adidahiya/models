@@ -30,7 +30,9 @@ slim = tf.contrib.slim
 LABELS_FILENAME = 'labels.txt'
 
 # lol small data
-SPLITS_TO_SIZES = {'train': 90, 'validation': 30}
+# splits are printed out during prepare_local_dataset.sh
+# these numbers are for 60 images in each class (total 120)
+SPLITS_TO_SIZES = {'train': 104, 'validation': 16}
 
 NUM_SHARDS = 4
 

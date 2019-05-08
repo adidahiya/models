@@ -16,7 +16,7 @@ MAX_NUM_IMAGES_PER_CLASS = 2 ** 27 - 1  # ~134M
 LABELS_FILENAME = 'labels.txt'
 
 
-def create_image_lists(image_dir, testing_percentage=10, validation_percentage=20):
+def create_image_lists(image_dir, testing_percentage=10, validation_percentage=10):
     """Builds a list of training images from the file system.
 
     Analyzes the sub folders in the image directory, splits them into stable
